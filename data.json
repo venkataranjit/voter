@@ -1,0 +1,60 @@
+{
+  "VoterList": [
+    {
+      "city": "guntur",
+      "name": "Ranjit",
+      "age": "37",
+      "hasVoterId": true,
+      "id": "1724489551060"
+    },
+    {
+      "id": "1724498085409",
+      "city": "hyderabad",
+      "name": "printo",
+      "age": "35",
+      "hasVoterId": "yes"
+    },
+    {
+      "id": "1724498162019",
+      "city": "hyderabad",
+      "name": "sudheer",
+      "age": "26",
+      "hasVoterId": "yes"
+    },
+    {
+      "id": "1724498660407",
+      "city": "hyderabad",
+      "name": "ram",
+      "age": "22",
+      "hasVoterId": "yes"
+    },
+    {
+      "city": "guntur",
+      "name": "hyderabad",
+      "age": "23",
+      "hasVoterId": true,
+      "id": "1724498822314"
+    },
+    {
+      "city": "guntur",
+      "name": "gy",
+      "age": "33",
+      "hasVoterId": true,
+      "id": "1724498932777"
+    },
+    {
+      "city": "hyderabad",
+      "name": "hy",
+      "age": "2",
+      "hasVoterId": true,
+      "id": "1724498955255"
+    },
+    {
+      "id": "1724499179311",
+      "city": "hyderabad",
+      "name": "hyd",
+      "age": "43",
+      "hasVoterId": "yes"
+    }
+  ]
+}

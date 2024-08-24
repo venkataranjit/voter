@@ -1,0 +1,15 @@
+.voterList {
+    svg{
+        width: 16px;
+        cursor: pointer;
+    }
+    .edit svg{
+        fill: #198754;
+    }
+    .delete svg{
+        fill: #dc3545;
+    }
+    .edit, .delete{
+        cursor: pointer;
+    }
+}   
