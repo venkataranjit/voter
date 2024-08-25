@@ -8,8 +8,7 @@ import { ToastContainer, toast, Slide } from "react-toastify";
 import "./VoterList.scss";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
-
-const URL = "http://localhost:3000/VoterList";
+import URL from "./URL";
 
 const initialVoterData = () => {
   return [
@@ -18,7 +17,7 @@ const initialVoterData = () => {
       city: "guntur",
       name: "Ranjit Victory",
       age: 32,
-      hasVoterId: false,
+      hasVoterId: true,
     },
   ];
 };
@@ -66,7 +65,7 @@ const VoterList = () => {
         city: input.city,
         name: input.name,
         age: input.age,
-        hasVoterId: input.hasVoterId,
+        hasVoterId: input.hasVoterId === "yes" ? true : false,
       };
       await axios.post(URL, data);
     } catch (err) {
@@ -80,7 +79,7 @@ const VoterList = () => {
         city: input.city,
         name: input.name,
         age: input.age,
-        hasVoterId: input.hasVoterId === "yes",
+        hasVoterId: input.hasVoterId === "yes" ? true : false,
       };
       await axios.put(`${URL}/${input.id}`, data);
     } catch (err) {
@@ -158,7 +157,7 @@ const VoterList = () => {
         city: voterToEdit.city,
         name: voterToEdit.name,
         age: voterToEdit.age,
-        hasVoterId: voterToEdit.hasVoterId ? "yes" : "no",
+        hasVoterId: voterToEdit.hasVoterId === true ? "yes" : "no",
       });
       setEdit(voterToEdit.id);
     }
@@ -267,10 +266,10 @@ const VoterList = () => {
                         <td>{eachitem.city}</td>
                         <td>{eachitem.name}</td>
                         <td>{eachitem.age}</td>
-                        <td>{eachitem.hasVoterId ? "Yes" : "No"}</td>
+                        <td>{eachitem.hasVoterId === true ? "Yes" : "No"}</td>
                         <td>
                           {eachitem.age > 18
-                            ? eachitem.hasVoterId
+                            ? eachitem.hasVoterId === true
                               ? "You Are Eligible to Vote"
                               : "Please Apply Voter ID"
                             : "You are not Eligible to Vote"}
@@ -302,11 +301,7 @@ const VoterList = () => {
                   })}
                 </tbody>
               </Table>
-              {errDisplay && (
-                <Alert variant="danger">
-                  {errDisplay}
-                </Alert>
-              )}
+              {errDisplay && <Alert variant="danger">{errDisplay}</Alert>}
             </Col>
           </Row>
         </Container>
