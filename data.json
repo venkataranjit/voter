@@ -13,7 +13,13 @@
       "age": "36",
       "hasVoterId": false,
       "id": "1724576815163"
+    },
+    {
+      "city": "guntur",
+      "name": "new",
+      "age": "25",
+      "hasVoterId": true,
+      "id": "1724827631721"
     }
-    
   ]
 }

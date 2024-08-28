@@ -43,6 +43,7 @@ const toastObject = {
   theme: "dark",
   transition: Slide,
 };
+
 const VoterList = () => {
   const [voter, setVoter] = useState(initialVoterData);
   const [input, setInput] = useState(inputData);
@@ -119,6 +120,9 @@ const VoterList = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      const isValid = errorHandler();
+      if (!isValid) return;
+
       if (edit) {
         await updateData();
         toast.success("Data Updated Successfully", toastObject);
@@ -127,11 +131,10 @@ const VoterList = () => {
         toast.success("Data Added Successfully", toastObject);
       }
       await getData();
-    } catch (err) {
-      toast.error("Error during data submission", toastObject);
-    } finally {
       setInput(inputData());
       setEdit(null);
+    } catch (err) {
+      toast.error("Error during data submission", toastObject);
     }
   };
 
@@ -163,6 +166,29 @@ const VoterList = () => {
     }
   };
 
+  const errorHandler = () => {
+    let isValid = true;
+
+    if (!input.city) {
+      toast.error("City Not Selected", toastObject);
+      isValid = false;
+    } else if (input.name.length < 3 || input.name.trim() === "") {
+      toast.error("Enter Valid Name", toastObject);
+      isValid = false;
+    } else if (!input.hasVoterId) {
+      toast.error("Voter ID is Not Selected", toastObject);
+      isValid = false;
+    } else if (input.age === "") {
+      toast.error("Enter Age", toastObject);
+      isValid = false;
+    }
+    return isValid;
+  };
+
+  setTimeout(()=>{
+    setErrDisplay('');
+  }, 3000)
+
   useEffect(() => {
     getData();
   }, []);
@@ -174,7 +200,7 @@ const VoterList = () => {
         <Container className="my-5">
           <Row>
             <Col>
-              <h2 className="float-start">Vote Eligibility</h2>
+              <h2 className="float-start">Voter Eligibility</h2>
             </Col>
             <Col md={3}>
               <Form.Control
@@ -233,7 +259,7 @@ const VoterList = () => {
                   </Col>
 
                   <Button variant="success" type="submit">
-                    Submit
+                   {edit ? "Edit" : "Submit"}
                   </Button>
                   <div className="vr" />
                   <Button variant="outline-danger" onClick={resetHandler}>
