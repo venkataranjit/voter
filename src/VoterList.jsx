@@ -327,7 +327,7 @@ const VoterList = () => {
                   })}
                 </tbody>
               </Table>
-              {errDisplay && <Alert variant="danger">{errDisplay}</Alert>}
+              {errDisplay && <Alert variant="danger">{errDisplay === "Network Error" && "Now Server is Down"}</Alert>}
             </Col>
           </Row>
         </Container>
