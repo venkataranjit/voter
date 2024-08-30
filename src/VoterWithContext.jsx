@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
+import { VoterContext } from "./Context/VoterContext";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -9,28 +10,6 @@ import "./VoterList.scss";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import URL from "./URL";
-
-const initialVoterData = () => {
-  return [
-    {
-      id: "00001",
-      city: "guntur",
-      name: "Ranjit Victory",
-      age: 32,
-      hasVoterId: true,
-    },
-  ];
-};
-
-const inputData = () => {
-  return {
-    id: "",
-    city: "",
-    name: "",
-    age: "",
-    hasVoterId: "",
-  };
-};
 
 const toastObject = {
   position: "top-right",
@@ -44,15 +23,26 @@ const toastObject = {
   transition: Slide,
 };
 
-const VoterList = () => {
-  const [voter, setVoter] = useState(initialVoterData);
-  const [input, setInput] = useState(inputData);
-  const [search, setSearch] = useState("");
-  const [edit, setEdit] = useState("");
-  const [errDisplay, setErrDisplay] = useState("");
+const VoterWithContext = () => {
+  const {
+    voter,
+    setVoter,
+    input,
+    setInput,
+    search,
+    setSearch,
+    edit,
+    setEdit,
+    errDisplay,
+    setErrDisplay,
+    initialVoterData,
+    inputData
+  } = useContext(VoterContext);
+
   const getData = async () => {
     try {
       const resp = await axios(URL);
+      console.log(resp.data);
       setVoter([...initialVoterData(), ...resp.data]);
     } catch (err) {
       setErrDisplay(err.message);
@@ -185,9 +175,9 @@ const VoterList = () => {
     return isValid;
   };
 
-  setTimeout(()=>{
-    setErrDisplay('');
-  }, 3000)
+  setTimeout(() => {
+    setErrDisplay("");
+  }, 3000);
 
   useEffect(() => {
     getData();
@@ -200,7 +190,9 @@ const VoterList = () => {
         <Container>
           <Row>
             <Col>
-              <h2 className="float-start">Voter Eligibility</h2>
+              <h2 className="float-start">
+                Voter Eligibility with useContext Hook
+              </h2>
             </Col>
             <Col md={3}>
               <Form.Control
@@ -259,7 +251,7 @@ const VoterList = () => {
                   </Col>
 
                   <Button variant="success" type="submit">
-                   {edit ? "Edit" : "Submit"}
+                    {edit ? "Edit" : "Submit"}
                   </Button>
                   <div className="vr" />
                   <Button variant="outline-danger" onClick={resetHandler}>
@@ -327,7 +319,11 @@ const VoterList = () => {
                   })}
                 </tbody>
               </Table>
-              {errDisplay && <Alert variant="danger">{errDisplay === "Network Error" && "Now Server is Down"}</Alert>}
+              {errDisplay && (
+                <Alert variant="danger">
+                  {errDisplay === "Network Error" && "Now Server is Down"}
+                </Alert>
+              )}
             </Col>
           </Row>
         </Container>
@@ -336,4 +332,4 @@ const VoterList = () => {
   );
 };
 
-export default VoterList;
+export default VoterWithContext;

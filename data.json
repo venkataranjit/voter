@@ -1,11 +1,11 @@
 {
   "VoterList": [
     {
-      "id": "1724576617530",
       "city": "hyderabad",
       "name": "aparna",
       "age": "28",
-      "hasVoterId": false
+      "hasVoterId": false,
+      "id": "1724576617530"
     },
     {
       "city": "guntur",
@@ -20,6 +20,20 @@
       "age": "25",
       "hasVoterId": true,
       "id": "1724827631721"
+    },
+    {
+      "id": "1725021178846",
+      "city": "vijayawada",
+      "name": "naga babu",
+      "age": "32",
+      "hasVoterId": true
+    },
+    {
+      "city": "guntur",
+      "name": "datta",
+      "age": "20",
+      "hasVoterId": true,
+      "id": "1725021227015"
     }
   ]
 }

@@ -13,6 +13,8 @@ function NavBar() {
           <Nav className="justify-content-end flex-grow-1 pe-3">
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <Nav.Link as={NavLink} to="/voter">Voter</Nav.Link>
+            <Nav.Link as={NavLink} to="/voterwithcontext">Voter with Context</Nav.Link>
+            <Nav.Link as={NavLink} to="/drinks">Drinks Api</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
