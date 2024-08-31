@@ -10,6 +10,7 @@ import "./VoterList.scss";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import URL from "./URL";
+import { Link } from "react-router-dom";
 
 const toastObject = {
   position: "top-right",
@@ -42,7 +43,6 @@ const VoterWithContext = () => {
   const getData = async () => {
     try {
       const resp = await axios(URL);
-      console.log(resp.data);
       setVoter([...initialVoterData(), ...resp.data]);
     } catch (err) {
       setErrDisplay(err.message);
@@ -280,7 +280,7 @@ const VoterWithContext = () => {
                   {FilteredData().map((eachitem, index) => {
                     return (
                       <tr key={eachitem.id}>
-                        <td>{index + 1}</td>
+                        <td><Link to={eachitem.id} > {index + 1}</Link></td>
                         <td>{eachitem.city}</td>
                         <td>{eachitem.name}</td>
                         <td>{eachitem.age}</td>

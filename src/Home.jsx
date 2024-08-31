@@ -1,18 +1,13 @@
-import React, { useContext } from "react";
-import {Container, Row, Col} from 'react-bootstrap';
-import { UserContext } from "./Context/UserContext";
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Home = () => {
-  const {isLogin, setIsLogin} = useContext(UserContext);
-
   return (
     <>
       <Container>
         <Row>
           <Col>
-            <p>Home</p>
-            <p>{isLogin ? "Login" : "Logout"}</p>
-            <button onClick={()=>setIsLogin(!isLogin)} >Change State</button>
+            <h4>Home Page</h4>
           </Col>
         </Row>
       </Container>
